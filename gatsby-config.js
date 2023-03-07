@@ -21,6 +21,13 @@ module.exports = {
     },
   },
   plugins: [
+    `gatsby-transformer-json`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/blog`,
+      },
+    },
     `gatsby-plugin-image`,
     `gatsby-plugin-netlify-cms`,
     {

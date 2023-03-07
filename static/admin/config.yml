@@ -1,8 +1,9 @@
- backend:
+backend:
   name: github
   repo: briskteq-faiz/foodblog-gatsby-
   branch: main
 
+local_backend: true
 media_folder: "static/img"
 public_folder: "/img"
 
@@ -11,6 +12,9 @@ collections:
     label: "Article"
     folder: "content/blog"
     create: true
+    delete: true
+    format: "json"
+    extension: "json"
     slug: "{{slug}}"
     editor:
       preview: false

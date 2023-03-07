@@ -18,7 +18,18 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   // Get all markdown blog posts sorted by date
   const result = await graphql(`
-    {
+  allBlogJson(sort: {date: DESC}, limit: 100) {
+    nodes {
+      id
+      description
+      date
+      body
+    }
+  }
+  `)
+
+  /*
+      {
       allMarkdownRemark(sort: { frontmatter: { date: ASC } }, limit: 1000) {
         nodes {
           id
@@ -28,7 +39,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         }
       }
     }
-  `)
+  */
 
   if (result.errors) {
     reporter.panicOnBuild(
@@ -38,7 +49,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return
   }
 
-  const posts = result.data.allMarkdownRemark.nodes
+  const posts = result.data.allBlogJson.nodes
 
   // Create blog posts pages
   // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
